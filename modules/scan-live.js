@@ -1,6 +1,4 @@
-export const SCAN_LIVE = {
-    send(data) {
-        console.log("LIVE SEND:", data);
-    }
-};
-
+{
+    "description": "Live Daten",
+    "last_send": "none"
+}
