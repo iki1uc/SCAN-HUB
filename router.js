@@ -4,5 +4,6 @@ export const Router = {
     run(type, payload) {
         const result = SCAN_ROUTER.route(type, payload);
         console.log("SCAN RESULT:", result);
+        return result;
     }
 };
