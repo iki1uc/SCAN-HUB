@@ -1,1 +1,7 @@
+{
+  "name": "SCAN HUB",
+  "short_name": "SCAN",
+  "start_url": "index.html",
+  "display": "standalone"
+}
 
