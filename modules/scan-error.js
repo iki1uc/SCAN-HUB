@@ -9,3 +9,4 @@ export const SCAN_ERROR = {
         return errors;
     }
 };
+
