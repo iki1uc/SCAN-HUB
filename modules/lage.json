@@ -1,1 +1,10 @@
+{
+    "scan": "ready",
+    "dom": "idle",
+    "arg": "idle",
+    "position": "idle",
+    "system": "active",
+    "live": "ready",
+    "router": "connected"
+}
 
