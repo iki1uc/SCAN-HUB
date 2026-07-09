@@ -1,5 +1,10 @@
-<body id="UI-SCANNER"
-      data-iki="phase:omelett; einstieg:ui; inhalt:scanner; start:start2;">
-  UI-SCANNER – Scanoberfläche aktiv
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>UI Scanner</h1>
+    <script>
+        const count = document.querySelectorAll('*').length;
+        parent.postMessage({ ui_count: count }, "*");
+    </script>
 </body>
-
+</html>
