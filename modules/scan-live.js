@@ -1,4 +1,5 @@
-{
-    "description": "Live Daten",
-    "last_send": "none"
-}
+export const SCAN_LIVE = {
+    send(data) {
+        console.log("LIVE:", data);
+    }
+};
