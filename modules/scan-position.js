@@ -1,6 +1,5 @@
-export const SCAN_POSITION = {
-    run() {
-        return { x: window.scrollX, y: window.scrollY };
-    }
-};
-
+{
+    "description": "Position Scan Daten",
+    "last_x": 0,
+    "last_y": 0
+}
