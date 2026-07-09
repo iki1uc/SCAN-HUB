@@ -2,60 +2,36 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>SCAN‑HUB</title>
-
+    <title>SCAN HUB</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Router laden -->
     <script type="module" src="router.js"></script>
 
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.webmanifest">
-
-    <!-- Service Worker -->
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("service-worker.js");
-        }
-    </script>
-
     <style>
-        body {
-            font-family: Arial;
-            background: #111;
-            color: #eee;
-            padding: 20px;
-        }
+        body { font-family: Arial; background:#111; color:#eee; padding:20px; }
         button {
-            display: block;
-            width: 100%;
-            margin: 8px 0;
-            padding: 12px;
-            font-size: 18px;
-            background: #222;
-            color: #0f0;
-            border: 1px solid #0f0;
-            border-radius: 6px;
+            display:block; width:100%; margin:8px 0; padding:12px;
+            background:#222; color:#0f0; border:1px solid #0f0; border-radius:6px;
+            font-size:18px;
         }
-        h1 {
-            color: #0f0;
-        }
+        h1 { color:#0f0; }
     </style>
 </head>
 
 <body>
 
-    <h1>SCAN‑HUB</h1>
-    <p>Zentrale Scan‑Einheit (7 Funktionen aktiv).</p>
+    <h1>SCAN HUB</h1>
+    <p>7 Scan-Funktionen aktivierbar.</p>
 
-    <!-- 7 Funktionen -->
-    <button onclick="Router.run('dom')">DOM‑Scan</button>
-    <button onclick="Router.run('error')">Fehler‑Scan</button>
-    <button onclick="Router.run('ui')">UI‑Analyse</button>
-    <button onclick="Router.run('perf')">Performance‑Scan</button>
-    <button onclick="Router.run('seo')">SEO‑Scan</button>
-    <button onclick="Router.run('doc')">Dokument‑Scan</button>
-    <button onclick="Router.run('live')">LIVE‑Senden</button>
+    <!-- Deine 3 vorhandenen -->
+    <button onclick="Router.run('dom')">DOM Scan</button>
+    <button onclick="Router.run('arg')">Argument Scan</button>
+    <button onclick="Router.run('pos')">Position Scan</button>
+
+    <!-- Die fehlenden 4 -->
+    <button onclick="Router.run('ui')">UI Analyse</button>
+    <button onclick="Router.run('error')">Fehler Scan</button>
+    <button onclick="Router.run('perf')">Performance Scan</button>
+    <button onclick="Router.run('seo')">SEO Scan</button>
 
 </body>
 </html>
