@@ -6,3 +6,4 @@ export const SCAN_PERFORMANCE = {
         };
     }
 };
+
