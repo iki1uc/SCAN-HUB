@@ -2,106 +2,128 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>SCAN‑HUB BIOS</title>
+<title>SEINS‑LAGE Scanner</title>
+
 <style>
     body {
         margin:0;
-        background:#000;
-        color:#0f0;
+        background:#0a0a0a;
+        color:#00ff88;
         font-family:Consolas, monospace;
+    }
+
+    #wrap {
+        padding:40px;
+    }
+
+    .title {
+        font-size:32px;
+        margin-bottom:20px;
+        text-shadow:0 0 10px #00ff88;
+    }
+
+    .metric {
+        margin:15px 0;
+        padding:15px;
+        border:1px solid #00ff88;
+        background:#111;
+        box-shadow:0 0 10px #003300 inset;
+    }
+
+    .bar {
+        height:12px;
+        background:#003300;
+        margin-top:8px;
+        border-radius:4px;
         overflow:hidden;
     }
 
-    #boot {
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform:translate(-50%, -50%);
-        text-align:center;
-        font-size:22px;
-        opacity:0;
-        animation:fadeIn 2s forwards;
+    .fill {
+        height:100%;
+        background:#00ff88;
+        width:0%;
+        transition:width 1.5s ease;
     }
 
-    @keyframes fadeIn {
-        to { opacity:1; }
-    }
-
-    #axis {
-        margin-top:20px;
-        font-size:18px;
-        opacity:0;
-        animation:axisAnim 4s forwards;
-        animation-delay:2s;
-    }
-
-    @keyframes axisAnim {
-        to { opacity:1; }
-    }
-
-    #startbtn {
-        margin-top:40px;
-        padding:12px 30px;
-        font-size:20px;
-        background:#0f0;
-        color:#000;
-        border:none;
-        cursor:pointer;
-        opacity:0;
-        animation:btnAnim 3s forwards;
-        animation-delay:4s;
-    }
-
-    @keyframes btnAnim {
-        to { opacity:1; }
-    }
-
-    #main {
-        display:none;
+    #atmo {
+        margin-top:30px;
         padding:20px;
-        font-size:18px;
-    }
-
-    .scanbox {
-        border:1px solid #0f0;
-        padding:10px;
-        margin:10px 0;
+        border:1px solid #00ff88;
+        background:#111;
+        font-size:20px;
+        box-shadow:0 0 15px #004400 inset;
     }
 </style>
 </head>
 
 <body>
+<div id="wrap">
+    <div class="title">SEINS‑LAGE Scanner</div>
 
-<div id="boot">
-    SCAN‑HUB BIOS<br>
-    <small>Unified Scan Law v1.0</small>
-
-    <div id="axis">
-        Φ → φ → φ² → φ∞<br>
-        <small>Startsequenz geladen</small>
+    <div class="metric">
+        DOM‑Dichte
+        <div class="bar"><div id="domFill" class="fill"></div></div>
     </div>
 
-    <button id="startbtn" onclick="startHub()">START</button>
-</div>
+    <div class="metric">
+        Interaktivität
+        <div class="bar"><div id="intFill" class="fill"></div></div>
+    </div>
 
-<div id="main">
-    <h2>SCAN‑HUB – 7 Funktionen</h2>
+    <div class="metric">
+        Textlast
+        <div class="bar"><div id="txtFill" class="fill"></div></div>
+    </div>
 
-    <div class="scanbox">DOM‑Scan</div>
-    <div class="scanbox">Argument‑Scan</div>
-    <div class="scanbox">Positions‑Scan</div>
-    <div class="scanbox">UI‑Analyse</div>
-    <div class="scanbox">Fehler‑Scan</div>
-    <div class="scanbox">Performance‑Scan</div>
-    <div class="scanbox">SEO‑Scan</div>
-    <div class="scanbox">Dokument‑Scan</div>
+    <div class="metric">
+        Atmosphärische Bewertung
+        <div id="atmo">Berechne Seins‑Lage…</div>
+    </div>
 </div>
 
 <script>
-function startHub(){
-    document.getElementById("boot").style.display = "none";
-    document.getElementById("main").style.display = "block";
-}
+    // DOM-Dichte
+    const total = document.querySelectorAll('*').length;
+    const domScore = Math.min(100, total / 3);
+
+    // Interaktivität
+    const interactive = document.querySelectorAll('button, input, select, textarea, a[href]').length;
+    const intScore = Math.min(100, interactive * 10);
+
+    // Textlast
+    const text = document.body.innerText.length;
+    const txtScore = Math.min(100, text / 20);
+
+    // Atmosphärische Bewertung
+    const atmo = document.getElementById("atmo");
+    let atmoText = "";
+
+    const sum = domScore + intScore + txtScore;
+
+    if(sum < 80){
+        atmoText = "ruhig, minimal, klar — niedrige Seins‑Lage";
+    } else if(sum < 160){
+        atmoText = "aktiv, funktional, fokussiert — mittlere Seins‑Lage";
+    } else if(sum < 240){
+        atmoText = "reich, komplex, vielschichtig — hohe Seins‑Lage";
+    } else {
+        atmoText = "überladen, intensiv, atmosphärisch dicht — maximale Seins‑Lage";
+    }
+
+    atmo.innerText = atmoText;
+
+    // Balken animieren
+    document.getElementById("domFill").style.width = domScore + "%";
+    document.getElementById("intFill").style.width = intScore + "%";
+    document.getElementById("txtFill").style.width = txtScore + "%";
+
+    // Rückgabe an SCAN-HUB
+    parent.postMessage({
+        dom_density: domScore,
+        interactivity: intScore,
+        textload: txtScore,
+        atmosphere: atmoText
+    }, "*");
 </script>
 
 </body>
