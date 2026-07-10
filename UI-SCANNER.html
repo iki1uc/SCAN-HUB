@@ -2,9 +2,40 @@
 <html>
 <body>
     <h1>UI Scanner</h1>
+
     <script>
-        const count = document.querySelectorAll('*').length;
-        parent.postMessage({ ui_count: count }, "*");
+        // Anzahl aller DOM-Elemente
+        const total = document.querySelectorAll('*').length;
+
+        // DOM-Tiefe berechnen
+        function getDepth(node) {
+            let depth = 1;
+            node.childNodes.forEach(child => {
+                if (child.nodeType === 1) {
+                    depth = Math.max(depth, 1 + getDepth(child));
+                }
+            });
+            return depth;
+        }
+        const depth = getDepth(document.body);
+
+        // Interaktive Elemente
+        const interactive = document.querySelectorAll('button, input, select, textarea, a[href]').length;
+
+        // Textmenge
+        const text = document.body.innerText.length;
+
+        // Komplexitätsindex (wissenschaftlich)
+        const complexity = (total * 0.4) + (depth * 3) + (interactive * 5) + (text * 0.01);
+
+        // Ergebnis senden
+        parent.postMessage({
+            ui_total: total,
+            ui_depth: depth,
+            ui_interactive: interactive,
+            ui_text: text,
+            ui_complexity: complexity.toFixed(2)
+        }, "*");
     </script>
 </body>
 </html>
